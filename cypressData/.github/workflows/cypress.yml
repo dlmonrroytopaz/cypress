@@ -1,47 +1,29 @@
-name: Run Cypress Tests
+name: Cypress Tests
 
-# Este flujo se ejecutará cuando haya un push a la rama 'main'
 on:
   push:
     branches:
-      - main
-  pull_request:
-    branches:
-      - main
+      - main  # Ejecutará el flujo de trabajo cuando se haga push a la rama 'main'
 
 jobs:
-  cypress-run:
-    runs-on: ubuntu-latest  # Se utiliza un entorno Linux
+  test:
+    runs-on: ubuntu-latest  # Especifica que el trabajo se ejecutará en una máquina virtual con Ubuntu
 
     steps:
-      # Paso 1: Clonar el repositorio
-      - name: Checkout repository
-        uses: actions/checkout@v2
+      # Paso 1: Check out el código
+      - name: Check out code
+        uses: actions/checkout@v2  # Este paso descarga el código de tu repositorio en la máquina virtual
 
-      # Paso 2: Configurar Node.js y el entorno
+      # Paso 2: Configuración de Node.js
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v2  # Usa una acción para configurar Node.js
         with:
-          node-version: '16'  # Usa la versión de Node.js que prefieras
+          node-version: '14'  # Especifica que la versión de Node.js que se debe usar es la 14
 
       # Paso 3: Instalar dependencias
       - name: Install dependencies
-        run: |
-          npm install
+        run: npm install  # Este paso instala las dependencias definidas en package.json (incluido Cypress)
 
       # Paso 4: Ejecutar pruebas de Cypress
       - name: Run Cypress tests
-        uses: cypress-io/github-action@v4
-        with:
-          start: npm start  # Si tienes un servidor de desarrollo que se debe iniciar, reemplázalo por tu comando
-          wait-on: 'http://localhost:3000'  # Espera hasta que el servidor esté listo. Cambia el puerto si es necesario.
-          wait-on-timeout: 60 # Tiempo de espera para que el servidor esté disponible (en segundos)
-
-      # Paso 5: Mostrar los resultados de Cypress
-      - name: Upload Cypress videos and screenshots
-        uses: actions/upload-artifact@v3
-        with:
-          name: cypress-artifacts
-          path: |
-            cypress/videos
-            cypress/screenshots
+        run: npm run test  # Ejecuta las pruebas de Cypress usando el comando `npm run test`
