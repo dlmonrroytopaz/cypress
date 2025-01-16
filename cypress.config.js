@@ -10,6 +10,7 @@ module.exports = defineConfig({
     saveAllAttempts: false,
   },
   e2e: {
+    
     projectId: 'wt9vj9',
     chromeWebSecurity: false,
     setupNodeEvents(on, config) {
