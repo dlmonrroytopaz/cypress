@@ -8,7 +8,7 @@
     "open-report": "start cypress/reports/html/index.html",
     "ejecutartest": "npx cypress run ",
     "prueba": "npm run ejecutartest && npm run open-report || npm run open-report",
-    "test": "cypress run"
+    "test": "npx cypress run"
   },
   "dependencies": {
     "axios": "^1.7.7",
