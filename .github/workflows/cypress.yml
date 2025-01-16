@@ -1,0 +1,27 @@
+name: Cypress Tests
+
+on:
+  push:
+    branches:
+      - main  # Cambia esto si usas una rama diferente
+
+jobs:
+  test:
+    runs-on: ubuntu-latest  # Usa 'windows-latest' o 'macos-latest' si prefieres otro sistema
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2  # Esto descarga el código en la máquina de GitHub Actions
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'  # Usa la versión de Node.js que necesites
+
+      - name: Install dependencies
+        run: npm install
+        working-directory: ./  # Asegúrate de que esté en la raíz del repositorio
+
+      - name: Run Cypress tests
+        run: npm run test
+        working-directory: ./  # Asegúrate de que esté en la raíz del repositorio
