@@ -18,10 +18,6 @@ jobs:
         with:
           node-version: '14'  # Usa la versión de Node.js que necesites
 
-      - name: Install dependencies
-        run: npm install
-        working-directory: ./  # Asegúrate de que esté en la raíz del repositorio
-
       - name: Run Cypress tests
         run: npm run test
         working-directory: ./  # Asegúrate de que esté en la raíz del repositorio
