@@ -7,8 +7,8 @@ module.exports = defineConfig({
     reportPageTitle: 'custom-title',
     embeddedScreenshots: true,
     inlineAssets: true,
-    saveAllAttempts: false,
-    projectId: 'wt9vj9',
+    saveAllAttempts: false
+    
   },
   e2e: {
     
@@ -22,6 +22,7 @@ module.exports = defineConfig({
     env: {
       CYPRESS_RECORD_KEY: process.env.CYPRESS_RECORD_KEY,
       CYPRESS_SSL_VERIFY: "false"
-    }
+    },
+    projectId: 'wt9vj9'
   },
 });
